@@ -23,6 +23,6 @@ install modules all you need
 *bootstrap@4.3.1
 *font-awesome@5.8.1
 ## Author
-Wilson
+*Wilson*
 ## project design
-ALPHAcamp@S2-3 A1
+*ALPHAcamp@S2-3 A1*
