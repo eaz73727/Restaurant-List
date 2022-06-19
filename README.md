@@ -9,3 +9,4 @@
 ## Screen
 ![image](https://github.com/eaz73727/Restaurant-List/blob/main/restaurant%20screenshoot.jpg)
 ## Getting started
+1.
