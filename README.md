@@ -10,13 +10,13 @@
 ![image](https://github.com/eaz73727/Restaurant-List/blob/main/restaurant%20screenshoot.jpg)
 ## Getting started
 1. clone files
-Open your Terminal and copy and past this address and run it
+ *Open your Terminal and copy and past this address and run it
  `git clone https://github.com/eaz73727/Restaurant-List`
 2. install init
-install modules all you need
+ *install modules all you need
 `npm install`
 3. run
-`npm run start`
+ *`npm run start`
 4. modules
 *Express.js@4.18.1
 *Express-handlebars@4.0.2
