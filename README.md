@@ -11,7 +11,7 @@
 ## Getting started
 1. clone files
 Open your Terminal and copy and past this address and run it
-`git clone https://github.com/eaz73727/Restaurant-List`
+ `git clone https://github.com/eaz73727/Restaurant-List`
 2. install init
 install modules all you need
 `npm install`
