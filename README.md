@@ -16,9 +16,9 @@
 3. run  
  `npm run start`
 4. modules  
-*Express.js@4.18.1  
-*Express-handlebars@4.0.2  
-*bootstrap@4.3.1  
-*font-awesome@5.8.1  
+* Express.js@4.18.1  
+* Express-handlebars@4.0.2  
+* bootstrap@4.3.1  
+* font-awesome@5.8.1  
 ## project design
-*ALPHAcamp@S2-3 A1*
+* ALPHAcamp@S2-3 A1*
