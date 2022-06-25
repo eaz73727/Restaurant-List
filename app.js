@@ -1,9 +1,21 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const mongoose = require('mongoose')
 const restaurants = require('./restaurant.json').results
 
 const app = express()
 const port = 3000
+
+mongoose.connect(process.env.MONGODB, { useNewUrlParser: true, useUnifiedTopology: true })
+
+const db = mongoose.connection
+
+db.on('error', () => {
+  console.log('mongoDB error!')
+})
+db.once('open', () => {
+  console.log('mongoDB connected')
+})
 
 app.engine('hbs', exphbs({ defaultLayouts: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
@@ -23,7 +35,7 @@ app.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim()
   const filteredRestaurants = restaurants.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.includes(keyword))
   const noFile = filteredRestaurants.length ? false : true
-  res.render('index', { restaurants:filteredRestaurants , keyword, noFile })
+  res.render('index', { restaurants: filteredRestaurants, keyword, noFile })
 })
 
 app.listen(port, () => {
