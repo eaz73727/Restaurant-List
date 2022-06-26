@@ -29,6 +29,18 @@ app.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+
+app.post('/restaurants', (req, res) => {
+  const { name, name_en, category, location, phone, google_map, image, rating, description } = req.body
+  Restaurant.create({ name, name_en, category, location, phone, google_map, image, rating, description })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+
+})
+
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
   Restaurant.findById(id).lean()
@@ -56,6 +68,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
 app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   const { name, name_en, category, location, phone, google_map, image, rating, description } = req.body
+  console.log(req.body)
   Restaurant.findById(id)
     .then(restaurant => {
       restaurant.name = name
