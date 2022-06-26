@@ -1,7 +1,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
-const restaurants = require('./restaurant.json').results
+const Restaurant = require('./models/restaurant')
 
 const app = express()
 const port = 3000
@@ -23,19 +23,26 @@ app.set('view engine', 'hbs')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.render('index', { restaurants })
+  Restaurant.find().lean()
+    .then((restaurants) => res.render('index', { restaurants }))
+    .catch(error => console.log(error))
 })
 
 app.get('/restaurants/:id', (req, res) => {
-  const restaurant = restaurants.find(restaurant => restaurant.id.toString() === req.params.id)
-  res.render('show', { restaurant })
+  const id = req.params.id
+  Restaurant.findById(id).lean()
+    .then(restaurant => res.render('show', { restaurant }))
 })
 
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim()
-  const filteredRestaurants = restaurants.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.includes(keyword))
-  const noFile = filteredRestaurants.length ? false : true
-  res.render('index', { restaurants: filteredRestaurants, keyword, noFile })
+  const re = new RegExp(keyword, 'i')
+  Restaurant.find({ $or: [{ name: { $regex: re } }, { category: { $regex: re } }, { name_en: { $regex: re } }] })
+    .lean()
+    .then(restaurants => {
+      const noFile = !restaurants.length
+      res.render('index', { keyword, noFile, restaurants })
+    })
 })
 
 app.listen(port, () => {
