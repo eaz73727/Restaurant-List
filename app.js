@@ -21,6 +21,7 @@ app.engine('hbs', exphbs({ defaultLayouts: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
 app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
   Restaurant.find().lean()
@@ -43,6 +44,32 @@ app.get('/search', (req, res) => {
       const noFile = !restaurants.length
       res.render('index', { keyword, noFile, restaurants })
     })
+})
+
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  Restaurant.findById(id).lean()
+    .then(restaurant => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
+
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  const { name, name_en, category, location, phone, google_map, image, rating, description } = req.body
+  Restaurant.findById(id)
+    .then(restaurant => {
+      restaurant.name = name
+      restaurant.name_en = name_en
+      restaurant.category = category
+      restaurant.location = location
+      restaurant.phone = phone
+      restaurant.google_map = google_map
+      restaurant.image = image
+      restaurant.rating = rating
+      restaurant.description = description
+      return restaurant.save()
+    }).then(() => res.redirect(`/restaurants/${id}`))
+    .catch(error => console.log(error))
 })
 
 app.listen(port, () => {

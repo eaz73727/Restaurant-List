@@ -31,6 +31,10 @@ const restaurantSchema = new Schema({
     min:0,
     max:5
   },
+  location:{
+    type:String,
+    require:true
+  },
   description:{
     type:String,
     require:true
