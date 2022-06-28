@@ -68,7 +68,6 @@ app.get('/restaurants/:id/edit', (req, res) => {
 app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   const { name, name_en, category, location, phone, google_map, image, rating, description } = req.body
-  console.log(req.body)
   Restaurant.findById(id)
     .then(restaurant => {
       restaurant.name = name
@@ -80,7 +79,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
       restaurant.image = image
       restaurant.rating = rating
       restaurant.description = description
-      return restaurant.save()
+      restaurant.save()
     }).then(() => res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
 })
