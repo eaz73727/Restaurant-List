@@ -13,9 +13,9 @@
  `git clone https://github.com/eaz73727/Restaurant-List`
 2. install modules  
 `npm install`
-3. set your mongoDB on terminal
+3. set your mongoDB on terminal  
 ` set 'MONGODB=YOUR URL'`
-4. run the seeder.js to add the base files
+4. run the seeder.js to add the base files  
 `npm run seed`
 3. run  
  `npm run start`
