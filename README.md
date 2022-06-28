@@ -6,6 +6,9 @@
 * Render all restaurant on home page.
 * Render detailed restaurant info while click on restaurant card.
 * Search restaurant name or category by keyword.
+* create new restaurant file with form
+* edit restaurant
+* delete restaurant that you dont want
 ## Screen
 ![image](https://github.com/eaz73727/Restaurant-List/blob/main/restaurant%20screenshoot.jpg)
 ## Getting started
