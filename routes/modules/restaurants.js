@@ -30,20 +30,8 @@ router.get('/:id/edit', (req, res) => {
 
 router.put('/:id', (req, res) => {
   const id = req.params.id
-  const { name, name_en, category, location, phone, google_map, image, rating, description } = req.body
-  Restaurant.findById(id)
-    .then(restaurant => {
-      restaurant.name = name
-      restaurant.name_en = name_en
-      restaurant.category = category
-      restaurant.location = location
-      restaurant.phone = phone
-      restaurant.google_map = google_map
-      restaurant.image = image
-      restaurant.rating = rating
-      restaurant.description = description
-      restaurant.save()
-    }).then(() => res.redirect(`/restaurants/${id}`))
+  Restaurant.findByIdAndUpdate(id, req.body)
+    .then(() => res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
 })
 
