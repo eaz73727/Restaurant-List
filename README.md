@@ -8,7 +8,9 @@
 * Search restaurant name or category by keyword.
 * create new restaurant file with form
 * edit restaurant
-* delete restaurant that you dont want
+* delete restaurant that you don't want
+* RESTful method design
+* Routes
 ## Screen
 ![image](https://github.com/eaz73727/Restaurant-List/blob/main/restaurant%20screenshoot.jpg)
 ## Getting started
@@ -28,5 +30,6 @@
 * bootstrap@4.3.1  
 * font-awesome@5.8.1  
 * mongoose#5.9.7
+* method-override@3.0.0
 ## project design
 * ALPHAcamp@S2-3 A1*

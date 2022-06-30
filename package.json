@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "seed":"node ./models/seeds/seeder.js",
+    "seed": "node ./models/seeds/seeder.js",
     "start": "node app.js",
     "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,6 +15,7 @@
   "dependencies": {
     "express": "^4.18.1",
     "express-handlebars": "^4.0.2",
+    "method-override": "^3.0.0",
     "mongoose": "^5.9.7"
   }
 }

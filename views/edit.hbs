@@ -1,5 +1,5 @@
 <div class="container mt-3 border border-success border-4">
-  <form class="m-3" action="/restaurants/{{restaurant._id}}/edit" method="POST">
+  <form class="m-3" action="/restaurants/{{restaurant._id}}?_method=PUT" method="POST">
     <div class="form-group">
       <label for="name" class="form-label">餐廳名稱</label>
       <input type="text" class="form-control" id="name" name="name" required oninvalid="Swal.fire('請輸入餐廳名稱！')"
