@@ -53,16 +53,21 @@ header {
 
 .card {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
 }
 
 .card img {
-  height: 180px;
+  height: 230px;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
 }
 
 .card-title {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-decoration: none;
+  font-size: 1.7rem;
 }
 
 .restaurant-category {

@@ -1,0 +1,39 @@
+{{#each restaurants}}
+  <div class='col-sm-4'>
+    <a
+      href='/restaurants/{{this._id}}'
+      class='text-secondary'
+      style='text-decoration: none;'
+    >
+      <div class='card mb-3'>
+        <img src='{{this.image}}' class='card-img-top' alt='{{this.name}}' />
+        <div class='card-body'>
+          <h6 class='card-title'>{{this.name}}</h6>
+          <div class='restaurant-category mb-1'>
+            <i class='fas fa-utensils pr-2'></i>
+            {{this.category}}
+            <span class='badge rounded-pill bg-danger font-weight-normal'>
+              {{this.rating}}
+              <i class='fas fa-star fa-xs'></i>
+            </span>
+          </div>
+          <form
+            action='/res'
+            class='mt-2 d-flex justify-content-end'
+            method='POST'
+          >
+            <a
+              href='/restaurant/edit'
+              class='btn btn-outline-primary mx-2'
+            >修改</a>
+            <button
+              class='btn btn-outline-danger mx-2'
+              type='submit'
+            >刪除</button>
+          </form>
+        </div>
+      </div>
+    </a>
+  </div>
+
+{{/each}}

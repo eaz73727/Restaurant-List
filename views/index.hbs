@@ -7,50 +7,8 @@
       {{keyword}}
       找不到符合的餐廳！
     </div>
-  {{/if}}
-  <div class='row'>
-    <div class='col-md-10 col-12 mx-auto'>
-      <div class='card-columns'>
-        {{#each restaurants}}
-          <a href='/restaurants/{{this._id}}' class='text-secondary'>
-            <div class='card mb-3'>
-              <img
-                class='card-img-top'
-                src='{{this.image}}'
-                alt='{{this.name}}'
-              />
-              <div class='card-body p-3'>
-                <h6 class='card-title mb-1'>{{this.name}}</h6>
-                <div class='restaurant-category mb-1'>
-                  <i class='fas fa-utensils pr-2'></i>
-                  {{this.category}}
-                </div>
-                <span class='badge badge-pill badge-danger font-weight-normal'>
-                  {{this.rating}}
-                  <i class='fas fa-star fa-xs'></i>
-                </span>
-                <div class='d-flex justify-content-end'>
-                  <a
-                    class='btn btn-outline-secondary'
-                    href='/restaurants/{{this._id}}/edit'
-                  >
-                    修改</a>
-                  <form
-                    class='ml-1'
-                    action='restaurants/{{this._id}}?_method=DELETE'
-                    method='POST'
-                  >
-                    <button
-                      type='submit'
-                      class='btn btn-outline-danger'
-                    >刪除</button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </a>
-        {{/each}}
-      </div>
-    </div>
+  {{/if}}   
+  <div class="row">
+    {{> cards}}
   </div>
 </div>
