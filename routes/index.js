@@ -1,7 +1,12 @@
 const express = require('express')
 const router = express.Router()
 const restaurantController = require('../controllers/restaurant-controller')
+const userController = require('../controllers/user-controller')
 
+router.post('/users/login', userController.postLogin)
+router.get('/users/login', userController.loginPage)
+router.post('/users/register', userController.postRegister)
+router.get('/users/register', userController.registerPage)
 router.delete('/restaurants/:id', restaurantController.deleteRestaurant)
 router.put('/restaurants/:id', restaurantController.putRestaurant)
 router.get('/restaurants/:id/edit', restaurantController.editRestaurantPage)

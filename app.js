@@ -8,6 +8,7 @@ const session = require('express-session')
 const methodOverride = require('method-override')
 
 const routes = require('./routes')
+const usePassport = require('./config/passport')
 require('./config/mongoose')
 
 const app = express()
@@ -24,8 +25,8 @@ app.use(
     saveUninitialized: true
   })
 )
+usePassport(app)
 app.use(express.static('public'))
-
 app.use(methodOverride('_method'))
 app.use(express.urlencoded({ extended: true }))
 

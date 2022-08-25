@@ -8,22 +8,26 @@ module.exports = app => {
   app.use(passport.session())
 
   passport.use(
-    new LocalStrategy({
-      usernameField: 'email',
-      passReqToCallback: true
-    }),
-    (req, email, password, cb) => {
-      User.findOne({ email })
-        .then(user => {
-          if (!user) return cb(null, false, { message: 'no files' })
-          bcrypt.compare(password, user.password).then(usMatch => {
-            if (!isMatch) return cb(null, false, { message: 'incorrect pass' })
-            return cb(null, user)
+    new LocalStrategy(
+      {
+        usernameField: 'email',
+        passReqToCallback: true
+      },
+      (req, email, password, cb) => {
+        User.findOne({ email })
+          .then(user => {
+            if (!user) return cb(null, false, { message: 'no files' })
+            return bcrypt.compare(password, user.password).then(isMatch => {
+              if (!isMatch)
+                return cb(null, false, { message: 'incorrect pass' })
+              return cb(null, user)
+            })
           })
-        })
-        .catch(err => console.log(err))
-    }
+          .catch(err => console.log(err))
+      }
+    )
   )
+
   // 序列化
   passport.serializeUser((user, cb) => {
     cb(null, user.id)
