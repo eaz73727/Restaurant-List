@@ -8,11 +8,21 @@ const userController = {
   },
   postRegister: (req, res) => {
     const { name, email, password, confirmPassword } = req.body
+    const errors = []
+    if (!name || !email || !password || !confirmPassword)
+      errors.push({ message: '所有欄位都是必填！' })
     if (password !== confirmPassword)
-      return console.log('password and confirmPassword is not match')
+      errors.push({ message: '密碼與確認密碼不符！' })
+    if (errors.length) {
+      return res.render('register', {
+        errors,
+        name,
+        email
+      })
+    }
     User.findOne({ email }).then(user => {
       if (user) {
-        console.log('User exist!')
+        req.flash('warning_msg', '使用者已存在')
         res.render('register', { name, email })
       } else {
         bcrypt
@@ -35,6 +45,7 @@ const userController = {
   },
   postLogin: passport.authenticate('local', {
     successRedirect: '/',
+    failureFlash: true,
     failureRedirect: '/users/login'
   })
 }
