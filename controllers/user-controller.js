@@ -47,7 +47,14 @@ const userController = {
     successRedirect: '/',
     failureFlash: true,
     failureRedirect: '/users/login'
-  })
+  }),
+  logout: (req, res, next) => {
+    req.logout(err => {
+      if (err) return next(err)
+      req.flash('success_msg', '您已成功登出！')
+      res.redirect('/users/login')
+    })
+  }
 }
 
 module.exports = userController

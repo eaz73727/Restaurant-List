@@ -4,6 +4,7 @@ const userController = require('../controllers/user-controller')
 const restaurants = require('./modules/restaurants')
 const { authenticator } = require('../middleware/auth.js')
 
+router.get('/users/logout', userController.logout)
 router.use('/restaurants', authenticator, restaurants)
 router.post('/users/login', userController.postLogin)
 router.get('/users/login', userController.loginPage)
