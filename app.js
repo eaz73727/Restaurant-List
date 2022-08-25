@@ -5,6 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express')
 const { engine } = require('express-handlebars')
 const session = require('express-session')
+const methodOverride = require('method-override')
 
 const routes = require('./routes')
 require('./config/mongoose')
@@ -24,6 +25,8 @@ app.use(
   })
 )
 app.use(express.static('public'))
+
+app.use(methodOverride('_method'))
 app.use(express.urlencoded({ extended: true }))
 
 app.use(routes)

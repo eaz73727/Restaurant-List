@@ -5,7 +5,7 @@ const restaurantSchema = new Schema({
     type: String,
     required: true
   },
-  name: {
+  name_en: {
     type: String,
     required: false
   },
@@ -14,6 +14,10 @@ const restaurantSchema = new Schema({
     required: true
   },
   image: {
+    type: String,
+    required: true
+  },
+  location: {
     type: String,
     required: true
   },

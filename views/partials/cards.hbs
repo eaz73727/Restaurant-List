@@ -18,12 +18,12 @@
             </span>
           </div>
           <form
-            action='/res'
+            action='/restaurants/{{this._id}}?_method=DELETE'
             class='mt-2 d-flex justify-content-end'
             method='POST'
           >
             <a
-              href='/restaurant/edit'
+              href='/restaurants/{{this._id}}/edit'
               class='btn btn-outline-primary mx-2'
             >修改</a>
             <button
