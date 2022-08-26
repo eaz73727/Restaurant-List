@@ -1,41 +1,48 @@
 const Restaurant = require('../models/restaurant')
 const restaurantController = {
   getRestaurants: (req, res) => {
-    Restaurant.find()
+    const userId = req.user._id
+    Restaurant.find({ userId })
       .lean()
       .sort({ _id: 'asc' })
       .then(restaurants => res.render('index', { restaurants }))
+      .catch(err => console.log(err))
   },
   newRestaurantPage: (req, res) => {
     res.render('new')
   },
   postRestaurant: (req, res) => {
-    Restaurant.create(req.body)
+    const userId = req.user._id
+    Restaurant.create({ ...req.body, userId })
       .then(() => res.redirect('/'))
       .catch(err => console.log(err))
   },
   detailRestaurantPage: (req, res) => {
-    const id = req.params.id
-    Restaurant.findById(id)
+    const userId = req.user._id
+    const _id = req.params.id
+    Restaurant.findOne({ _id, userId })
       .lean()
       .then(restaurant => res.render('detail', { restaurant }))
   },
   editRestaurantPage: (req, res) => {
-    const id = req.params.id
-    Restaurant.findById(id)
+    const userId = req.user._id
+    const _id = req.params.id
+    Restaurant.findOne({ _id, userId })
       .lean()
       .then(restaurant => res.render('edit', { restaurant }))
       .catch(err => console.log(err))
   },
   putRestaurant: (req, res) => {
-    const id = req.params.id
-    Restaurant.findByIdAndUpdate(id, req.body)
-      .then(() => res.redirect('/'))
+    const userId = req.user._id
+    const _id = req.params.id
+    Restaurant.findOneAndUpdate({ _id, userId }, req.body)
+      .then(() => res.redirect(`/restaurants/${id}`))
       .catch(err => console.log(err))
   },
   deleteRestaurant: (req, res) => {
-    const id = req.params.id
-    Restaurant.findByIdAndRemove(id)
+    const userId = req.user._id
+    const _id = req.params.id
+    Restaurant.findOneAndRemove({ _id, userId })
       .then(() => res.redirect('/'))
       .catch(err => console.log(err))
   },
