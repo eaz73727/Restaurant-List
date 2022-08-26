@@ -7,10 +7,11 @@ const userController = {
     res.render('register')
   },
   postRegister: (req, res) => {
-    const { name, email, password, confirmPassword } = req.body
+    let { name, email, password, confirmPassword } = req.body
     const errors = []
-    if (!name || !email || !password || !confirmPassword)
-      errors.push({ message: '所有欄位都是必填！' })
+    if (name.trim() === '') name = 'Default User'
+    if (!email || !password || !confirmPassword)
+      errors.push({ message: '除了暱稱以外所有欄位都是必填！' })
     if (password !== confirmPassword)
       errors.push({ message: '密碼與確認密碼不符！' })
     if (errors.length) {
@@ -35,7 +36,10 @@ const userController = {
               password: hash
             }).catch(err => console.log(err))
           })
-          .then(() => res.redirect('/'))
+          .then(() => {
+            req.flash('success_msg', '註冊成功！請登入以繼續使用！')
+            res.redirect('/users/login')
+          })
           .catch(err => console.log(err))
       }
     })
