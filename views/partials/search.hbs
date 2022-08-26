@@ -2,7 +2,7 @@
 <div class='container search-bar'>
   <div class='search-bar-outer'>
     <div class='search-bar-inner'>
-      <form action='/search'>
+      <form action='/restaurants/search'>
         <h4 class='mb-2'>尋找餐廳：</h4>
         <div class='input-group mb-3'>
           <input
@@ -12,12 +12,14 @@
             placeholder='輸入餐廳、分類'
             aria-label='Restaurant Name...'
             aria-describedby='search-button'
+            value="{{keyword}}"
           />
-          <button class='btn btn btn-major' type='button' id='search-button'><i
+          <button class='btn btn btn-major' type='submit' id='search-button'><i
               class='fas fa-search'
             ></i></button>
         </div>
       </form>
+      {{> message}}
     </div>
   </div>
 </div>

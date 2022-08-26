@@ -38,6 +38,26 @@ const restaurantController = {
     Restaurant.findByIdAndRemove(id)
       .then(() => res.redirect('/'))
       .catch(err => console.log(err))
+  },
+  searchRestaurants: (req, res) => {
+    const keyword = req.query.keyword.toLowerCase().trim()
+    Restaurant.find()
+      .lean()
+      .then(restaurant => {
+        const filteredRestaurant = restaurant.filter(restaurant => {
+          const { name, name_en, category } = restaurant
+          return (
+            name.toLowerCase().includes(keyword) ||
+            name_en.toLowerCase().includes(keyword) ||
+            category.toLowerCase().includes(keyword)
+          )
+        })
+        return filteredRestaurant
+      })
+      .then(restaurants => {
+        const noFile = !restaurants.length
+        res.render('index', { keyword, noFile, restaurants })
+      })
   }
 }
 

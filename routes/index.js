@@ -6,6 +6,6 @@ const { authenticator } = require('../middleware/auth.js')
 
 router.use('/users', users)
 router.use('/restaurants', authenticator, restaurants)
-router.use('/', (req, res) => res.redirect('/restaurants/'))
+router.get('/', (req, res) => res.redirect('/restaurants/'))
 
 module.exports = router
