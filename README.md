@@ -20,7 +20,8 @@
  `git clone https://github.com/eaz73727/Restaurant-List`
 2. install modules  
  `npm install`
-3. check .env.example for setting up your global var 
+3. check .env.example for setting up your global var  
+![image](https://github.com/eaz73727/Restaurant-List/blob/main/.env.example.jpg)  
 4. run the seeder.js to add the base files  
  `npm run seed`
 5. run the server  
