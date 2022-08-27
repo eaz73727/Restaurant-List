@@ -26,7 +26,7 @@
 5. run the server
  `npm run start`
 ### seeder files
-* 8 standard restaurant in restaruant.json
+* 8 standard restaurants in restaruant.json
 * Login email address: `root@example.com`
 * login password: `12345678`
 
