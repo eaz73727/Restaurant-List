@@ -19,16 +19,17 @@
 1. clone files  
  `git clone https://github.com/eaz73727/Restaurant-List`
 2. install modules  
-`npm install`
+ `npm install`
 3. check .env.example for setting up your global var 
 4. run the seeder.js to add the base files  
-`npm run seed`
+ `npm run seed`
+5. run the server
+ `npm run start`
 ### seeder files
 * 8 standard restaurant in restaruant.json
-* Login email address:`root@example.com`
+* Login email address: `root@example.com`
 * login password: `12345678`
-3. run  
- `npm run start`
+
 ## modules  
 * connect-flash@0.1.1
 * dotenv@16.0.1
