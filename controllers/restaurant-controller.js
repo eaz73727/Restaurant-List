@@ -42,7 +42,7 @@ const restaurantController = {
       .then(() => res.redirect(`/restaurants/${_id}`))
       .catch(err => next(err))
   },
-  deleteRestaurant: (req, res) => {
+  deleteRestaurant: (req, res, next) => {
     const userId = req.user._id
     const _id = req.params.id
     Restaurant.findOneAndRemove({ _id, userId })

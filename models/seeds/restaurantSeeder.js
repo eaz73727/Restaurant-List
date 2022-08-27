@@ -4,7 +4,6 @@ const seedUsers = require('../../users.json').results
 const Restaurant = require('../restaurant')
 const User = require('../user')
 const bcrypt = require('bcryptjs')
-const restaurant = require('../restaurant')
 db.once('open', () => {
   Promise.all(
     Array.from(seedUsers, user => {
@@ -27,8 +26,8 @@ db.once('open', () => {
         })
     })
   )
-  .then(() => {
-    console.log('done')
-    process.exit()
-  })
+    .then(() => {
+      console.log('done')
+      process.exit()
+    })
 })

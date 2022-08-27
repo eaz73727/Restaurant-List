@@ -17,19 +17,18 @@ module.exports = app => {
       (req, email, password, cb) => {
         User.findOne({ email })
           .then(user => {
-            if (!user)
+            if (!user) {
               return cb(
                 null,
                 false,
                 req.flash('warning_msg', '帳號或密碼不符！')
               )
+            }
             return bcrypt.compare(password, user.password).then(isMatch => {
-              if (!isMatch)
-                return cb(
-                  null,
-                  false,
-                  req.flash('warning_msg', '帳號或密碼不符！')
+              if (!isMatch) {
+                return cb(null, false, req.flash('warning_msg', '帳號或密碼不符！')
                 )
+              }
               return cb(null, user)
             })
           })
