@@ -23,7 +23,7 @@
 3. check .env.example for setting up your global var 
 4. run the seeder.js to add the base files  
  `npm run seed`
-5. run the server
+5. run the server  
  `npm run start`
 ### seeder files
 * 8 standard restaurants in restaruant.json
