@@ -3,7 +3,7 @@
     <div class='col-8 mx-auto py-5'>
       <div class='card'>
         <div class='card-body'>
-          <form class='m-3' action='/restaurants' method='POST'>
+          <form class='m-3' action='/restaurants/{{restaurant._id}}?_method=PUT' method='POST'>
             <div class='mb-3'>
               {{> message}}
               <label for='name' class='form-label'>餐廳名稱</label>
