@@ -1,12 +1,12 @@
 const passport = require('passport')
 
-const authController= {
-  facebookLogin:passport.authenticate('facebook',{
-    scope:['email','public_profile']
+const authController = {
+  facebookLogin: passport.authenticate('facebook', {
+    scope: ['email', 'public_profile']
   }),
-  facebookCallback:passport.authenticate('facebook',{
-    successRedirect:'/',
-    failureRedirect:'users/login'
+  facebookCallback: passport.authenticate('facebook', {
+    successRedirect: '/',
+    failureRedirect: 'users/login'
   })
 }
 

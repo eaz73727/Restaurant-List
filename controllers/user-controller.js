@@ -15,11 +15,7 @@ const userController = {
     if (password !== confirmPassword)
       errors.push({ message: '密碼與確認密碼不符！' })
     if (errors.length) {
-      return res.render('register', {
-        errors,
-        name,
-        email
-      })
+      return res.render('register', { errors, name, email })
     }
     User.findOne({ email }).then(user => {
       if (user) {

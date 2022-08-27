@@ -13,29 +13,12 @@ const restaurantController = {
   },
   postRestaurant: (req, res, next) => {
     const userId = req.user._id
-    const {
-      name,
-      category,
-      image,
-      location,
-      phone,
-      google_map,
-      rating,
-      description
-    } = req.body
-    if (
-      !name ||
-      !category ||
-      !image ||
-      !location ||
-      !phone ||
-      !google_map ||
-      !rating ||
-      !description
-    ) throw new Error('所有欄位都是必填')
-      Restaurant.create({ ...req.body, userId })
-        .then(() => res.redirect('/'))
-        .catch(err => next(err))
+    const { name, category, image, location, phone, google_map, rating, description } = req.body
+    // 防止有人修改我在 html skeleton 上面的 required
+    if (!name || !category || !image || !location || !phone || !google_map || !rating || !description) throw new Error('所有欄位都是必填')
+    Restaurant.create({ ...req.body, userId })
+      .then(() => res.redirect('/'))
+      .catch(err => next(err))
   },
   detailRestaurantPage: (req, res) => {
     const userId = req.user._id
@@ -55,6 +38,10 @@ const restaurantController = {
   putRestaurant: (req, res) => {
     const userId = req.user._id
     const _id = req.params.id
+    const { name, category, image, location, phone, google_map, rating, description } = req.body
+    // 防止有人修改我在 html skeleton 上面的 required
+    if (!name || !category || !image || !location || !phone || !google_map || !rating || !description
+    ) throw new Error('所有欄位都是必填')
     Restaurant.findOneAndUpdate({ _id, userId }, req.body)
       .then(() => res.redirect(`/restaurants/${id}`))
       .catch(err => next(err))
