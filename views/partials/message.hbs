@@ -9,6 +9,17 @@
     ></button>
   </div>
 {{/if}}
+{{#if error_msg}}
+  <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+    <strong>{{error_msg}}</strong>
+    <button
+      type='button'
+      class='btn-close'
+      data-bs-dismiss='alert'
+      aria-label='Close'
+    ></button>
+  </div>
+{{/if}}
 {{#if errors.length}}
   {{#each errors}}
     <div class='alert alert-warning alert-dismissible fade show' role='alert'>

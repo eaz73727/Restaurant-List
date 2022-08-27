@@ -34,13 +34,13 @@ const userController = {
               name,
               email,
               password: hash
-            }).catch(err => console.log(err))
+            }).catch(err => next(err))
           })
           .then(() => {
             req.flash('success_msg', '註冊成功！請登入以繼續使用！')
             res.redirect('/users/login')
           })
-          .catch(err => console.log(err))
+          .catch(err => next(err))
       }
     })
   },

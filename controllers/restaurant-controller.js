@@ -1,21 +1,41 @@
 const Restaurant = require('../models/restaurant')
 const restaurantController = {
-  getRestaurants: (req, res) => {
+  getRestaurants: (req, res, next) => {
     const userId = req.user._id
     Restaurant.find({ userId })
       .lean()
       .sort({ _id: 'asc' })
       .then(restaurants => res.render('index', { restaurants }))
-      .catch(err => console.log(err))
+      .catch(err => next(err))
   },
   newRestaurantPage: (req, res) => {
     res.render('new')
   },
-  postRestaurant: (req, res) => {
+  postRestaurant: (req, res, next) => {
     const userId = req.user._id
-    Restaurant.create({ ...req.body, userId })
-      .then(() => res.redirect('/'))
-      .catch(err => console.log(err))
+    const {
+      name,
+      category,
+      image,
+      location,
+      phone,
+      google_map,
+      rating,
+      description
+    } = req.body
+    if (
+      !name ||
+      !category ||
+      !image ||
+      !location ||
+      !phone ||
+      !google_map ||
+      !rating ||
+      !description
+    ) throw new Error('所有欄位都是必填')
+      Restaurant.create({ ...req.body, userId })
+        .then(() => res.redirect('/'))
+        .catch(err => next(err))
   },
   detailRestaurantPage: (req, res) => {
     const userId = req.user._id
@@ -24,27 +44,27 @@ const restaurantController = {
       .lean()
       .then(restaurant => res.render('detail', { restaurant }))
   },
-  editRestaurantPage: (req, res) => {
+  editRestaurantPage: (req, res, next) => {
     const userId = req.user._id
     const _id = req.params.id
     Restaurant.findOne({ _id, userId })
       .lean()
       .then(restaurant => res.render('edit', { restaurant }))
-      .catch(err => console.log(err))
+      .catch(err => next(err))
   },
   putRestaurant: (req, res) => {
     const userId = req.user._id
     const _id = req.params.id
     Restaurant.findOneAndUpdate({ _id, userId }, req.body)
       .then(() => res.redirect(`/restaurants/${id}`))
-      .catch(err => console.log(err))
+      .catch(err => next(err))
   },
   deleteRestaurant: (req, res) => {
     const userId = req.user._id
     const _id = req.params.id
     Restaurant.findOneAndRemove({ _id, userId })
       .then(() => res.redirect('/'))
-      .catch(err => console.log(err))
+      .catch(err => next(err))
   },
   searchRestaurants: (req, res) => {
     const keyword = req.query.keyword.toLowerCase().trim()
