@@ -23,7 +23,7 @@
 3. check .env.example for setting up your global var 
 4. run the seeder.js to add the base files  
 `npm run seed`
-* seeder files
+### seeder files
 * 8 standard restaurant in restaruant.json
 * Login email address:`root@example.com`
 * login password: `12345678`
